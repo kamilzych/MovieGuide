@@ -6,6 +6,8 @@ import com.esoxjem.movieguide.RxSchedulerRule;
 import com.esoxjem.movieguide.Video;
 import com.esoxjem.movieguide.favorites.FavoritesInteractor;
 
+import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -15,14 +17,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.net.SocketTimeoutException;
 import java.util.List;
-
-import io.reactivex.Observable;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
 
 /**
  * @author arunsasidharan
@@ -60,65 +55,36 @@ public class MovieDetailsPresenterImplTest {
 
     @Test
     public void shouldUnfavoriteIfFavoriteTapped() {
-        when(movie.getId()).thenReturn("12345");
-        when(favoritesInteractor.isFavorite(movie.getId())).thenReturn(true);
-
-        movieDetailsPresenter.onFavoriteClick(movie);
-
-        verify(view).showUnFavorited();
+        // if the movie is favorited, and presenter's onFavoriteClick() called
+        // then view showUnFavorited called
+        Assert.fail("not implemented");
     }
 
     @Test
     public void shouldFavoriteIfUnfavoriteTapped() {
-        when(movie.getId()).thenReturn("12345");
-        when(favoritesInteractor.isFavorite(movie.getId())).thenReturn(false);
-
-        movieDetailsPresenter.onFavoriteClick(movie);
-
-        verify(view).showFavorited();
+        // if the movie is NOT favorited, and presenter's onFavoriteClick() called
+        // then view showFavorited called
+        Assert.fail("not implemented");
     }
 
     @Test
     public void shouldBeAbleToShowTrailers() {
-        when(movie.getId()).thenReturn("12345");
-        Observable<List<Video>> responseObservable = Observable.just(videos);
-        when(movieDetailsInteractor.getTrailers(movie.getId())).thenReturn(responseObservable);
-
-        movieDetailsPresenter.showTrailers(movie);
-
-        verify(view).showTrailers(videos);
+        // if the movie has video trailers, and presenter's showTrailers() called
+        // then view showTrailers called
+        Assert.fail("not implemented");
     }
 
     @Test
     public void shouldFailSilentlyWhenNoTrailers() throws Exception {
-        when(movie.getId()).thenReturn("12345");
-        when(movieDetailsInteractor.getTrailers(movie.getId())).thenReturn(Observable.error(new SocketTimeoutException()));
-
-        movieDetailsPresenter.showTrailers(movie);
-
-        verifyZeroInteractions(view);
+        // if the movie has error while loading video trailers, and presenter's showTrailers() called
+        // then no view interactions happened
+        Assert.fail("not implemented");
     }
 
     @Test
     public void shouldBeAbleToShowReviews() {
-        Observable<List<Review>> responseObservable = Observable.just(reviews);
-        when(movie.getId()).thenReturn("12345");
-        when(movieDetailsInteractor.getReviews(movie.getId())).thenReturn(responseObservable);
-
-        movieDetailsPresenter.showReviews(movie);
-
-        verify(view).showReviews(reviews);
+        // if the movie has error while loading video trailers, and presenter's showReviews() called
+        // then view showReviews called
+        Assert.fail("not implemented");
     }
-
-
-    @Test
-    public void shouldFailSilentlyWhenNoReviews() throws Exception {
-        when(movie.getId()).thenReturn("12345");
-        when(movieDetailsInteractor.getReviews(movie.getId())).thenReturn(Observable.error(new SocketTimeoutException()));
-
-        movieDetailsPresenter.showReviews(movie);
-
-        verifyZeroInteractions(view);
-    }
-
 }
