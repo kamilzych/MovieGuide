@@ -4,9 +4,9 @@ import com.esoxjem.movieguide.MoviesWraper;
 import com.esoxjem.movieguide.ReviewsWrapper;
 import com.esoxjem.movieguide.VideoWrapper;
 
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import io.reactivex.Observable;
 
 /**
  * Created by ivan on 8/20/2017.

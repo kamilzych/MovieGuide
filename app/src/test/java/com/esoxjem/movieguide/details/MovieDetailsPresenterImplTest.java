@@ -16,7 +16,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.net.SocketTimeoutException;
-import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Observable;
