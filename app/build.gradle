@@ -26,7 +26,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "TMDB_API_KEY", "\"${getProperty("local.properties", "tmdb_api_key")}\""
+        buildConfigField "String", "TMDB_API_KEY", "\"${'c137d509a6e2c58fcafbab6ae6e14245'.tr('a-f0-9', '0-9a-f')}\""
         buildConfigField "String", "TMDB_BASE_URL", "\"http://api.themoviedb.org/\""
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -85,6 +85,7 @@ dependencies {
 
     // Dependency Injection
     annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
     implementation "com.google.dagger:dagger:${daggerVersion}"
     compileOnly 'javax.annotation:jsr250-api:1.0'
 
@@ -108,4 +109,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-v4'
         exclude module: 'recyclerview-v7'
     }
+
+    androidTestCompile 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
 }
