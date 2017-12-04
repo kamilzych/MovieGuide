@@ -50,6 +50,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 ext {
@@ -85,7 +91,7 @@ dependencies {
 
     // Dependency Injection
     annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
-    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+
     implementation "com.google.dagger:dagger:${daggerVersion}"
     compileOnly 'javax.annotation:jsr250-api:1.0'
 
@@ -100,6 +106,8 @@ dependencies {
     // Tests
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.9.0'
+    testCompile 'org.robolectric:robolectric:3.5.1'
+
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -110,5 +118,6 @@ dependencies {
         exclude module: 'recyclerview-v7'
     }
 
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
     androidTestCompile 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
 }
